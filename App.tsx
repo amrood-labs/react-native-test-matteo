@@ -1,20 +1,66 @@
 import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, View, Image, TextInput ,ScrollView} from 'react-native';
+import { SafeAreaView, View, Image, TextInput, ScrollView, FlatList } from 'react-native';
 import { Button, SearchBar, Text } from '@rneui/themed';
 import { useState } from 'react';
 import constants from './constants';
 import styles from './styles';
+import Data, { dataType, itemType } from './data';
+
 
 export default function App() {
   const [clickCount, setClickCount] = useState<number>(0);
   const [search, setSearch] = useState<string>("");
+  const [listItem, setListItem] = useState<dataType[]>(Data);
+
+  const renderItems = (item : dataType ) => {    
+    return (
+    <>
+      <Text style={styles.listTitle}>{item?.item?.title}</Text>
+      <FlatList
+        data={item?.item?.item}
+        renderItem={_renderItem}
+        keyExtractor={item => item.title}
+      />
+    </>
+    )
+  };
+  
+  const _renderItem = (item: itemType) => {
+    debugger
+    return(
+    <>
+      <View style={styles.listItem}>
+        <Image
+          source={require('./assets/staticIcon.png')}
+          style={styles.imageStyle}
+        />
+        <View style={styles.cardInerView}>
+          <View style={styles.row}>
+              <Text style={styles.cardTextStyle}>{item?.item?.title}</Text>
+            <Text>
+                <Text style={styles.cardTextStyle}>{item?.item?.weight}</Text>
+                <Text style={[styles.cardTextStyle, styles.kgColor]}> {item?.item?.unit}</Text>
+            </Text>
+          </View>
+          <TextInput
+            style={styles.cardText}
+            value={item?.item?.type}
+            placeholder="text"
+            editable={false}
+          />
+        </View>
+      </View>
+      <View style={styles.sepraterLiner} />
+      </>
+    )
+  }
+  
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="auto" />
       <ScrollView style={styles.innerContainer}>
-      
+
         {/*Click Test*/}
-        
         <Text style={styles.textStyle}>{constants.clickTest.title}</Text>
         <Button title={constants.clickTest.buttonText}
           buttonStyle={styles.buttonStyle}
@@ -32,9 +78,8 @@ export default function App() {
           </View>
         </View>
 
-        
+
         {/*Search Test*/}
-        
         <Text style={[styles.textStyle, styles.searchText]}>{constants.searchTest.title}</Text>
         <SearchBar
           placeholder="Search"
@@ -86,7 +131,15 @@ export default function App() {
           </View>
         </View>
 
-        
+        {/*List Test*/}
+        <Text style={[styles.textStyle, styles.searchText]}>{constants.listTest.titile}</Text>
+        <View style={styles.listView}>
+          <FlatList
+            data={listItem}
+            renderItem={renderItems}
+            keyExtractor={item => item.title}
+          />
+        </View>
       </ScrollView>
     </SafeAreaView>
   );

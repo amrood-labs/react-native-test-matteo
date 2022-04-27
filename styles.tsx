@@ -33,9 +33,12 @@ const styles = StyleSheet.create({
         marginTop: 16,
         padding: 10,
         borderColor: '#CDCDCD',
-        flexDirection: 'row'
+        flexDirection: 'row',
     },
-    cardInerView: { marginLeft: 7 },
+    cardInerView: {
+        marginLeft: 7,
+        width: '90%'
+    },
     cardTextStyle: {
         fontSize: 13,
         lineHeight: 18,
@@ -128,6 +131,39 @@ const styles = StyleSheet.create({
         borderColor: '#CDCDCD',
         borderTopColor: '#CDCDCD',
         borderBottomColor: '#CDCDCD'
+    },
+    listView: {
+        borderRadius: 8,
+        borderWidth: .5,
+        marginTop: 16,
+        borderColor: '#CDCDCD',
+    },
+    listItem: {
+        alignItems: 'center',
+        padding: 15,
+        flexDirection: 'row',
+        borderStyle: 'dashed',
+    },
+    sepraterLiner: {
+        borderStyle: 'dashed',
+        borderWidth: .5,
+        borderColor: '#CDCDCD',
+    },
+    row: {
+        width: '98%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    kgColor: {
+        color:'#C2C2C2'
+    },
+    listTitle: {
+        color: '#808080',
+        fontSize: 13,
+        lineHeight: 18,
+        fontWeight: '500',
+        letterSpacing: 0.025,
+        margin: 16
     }
 });
 

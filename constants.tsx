@@ -12,7 +12,13 @@ const constants = {
          title:'Messages test',
          heading: 'This is an empty state, to be used for messages and/or blog articles.',
          text: 'Four lines to describe the message/article to be highlighted. The text is accompanied by an illustration in the top right-hand corner.',
-    }
+    },
+    listTest: {
+        titile:'List test'
+     }
  }
 
+ 
+ 
+ 
 export default constants;
