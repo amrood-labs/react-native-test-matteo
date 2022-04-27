@@ -1,51 +1,55 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, SafeAreaView, View, Image, TextInput } from 'react-native';
-import { Button, ButtonGroup, SearchBar, Text } from '@rneui/themed';
+import { SafeAreaView, View, Image, TextInput ,ScrollView} from 'react-native';
+import { Button, SearchBar, Text } from '@rneui/themed';
 import { useState } from 'react';
+import constants from './constants';
+import styles from './styles';
 
 export default function App() {
-  const [clickCount, setClickCount] = useState(0);
-  const [search, setSearch] = useState("");
+  const [clickCount, setClickCount] = useState<number>(0);
+  const [search, setSearch] = useState<string>("");
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="auto" />
-
-      <View style={styles.innerContainer}>
-
-        <Text style={styles.textStyle}>Click test</Text>
-        <Button title="Click me"
+      <ScrollView style={styles.innerContainer}>
+      
+        {/*Click Test*/}
+        
+        <Text style={styles.textStyle}>{constants.clickTest.title}</Text>
+        <Button title={constants.clickTest.buttonText}
           buttonStyle={styles.buttonStyle}
           titleStyle={styles.btnTitle}
           onPress={() => setClickCount(clickCount + 1)}
         />
-
         <View style={styles.cardView}>
           <Image
             source={require('./assets/staticIcon.png')}
             style={styles.imageStyle}
           />
           <View style={styles.cardInerView}>
-            <Text style={styles.cardTextStyle}>Number of button clicks</Text>
+            <Text style={styles.cardTextStyle}>{constants.clickTest.text}</Text>
             <Text style={styles.cardText}>{clickCount}</Text>
           </View>
         </View>
 
-        <Text style={[styles.textStyle, styles.searchText]}>Search test</Text>
+        
+        {/*Search Test*/}
+        
+        <Text style={[styles.textStyle, styles.searchText]}>{constants.searchTest.title}</Text>
         <SearchBar
           placeholder="Search"
           onChangeText={setSearch}
           value={search}
           inputContainerStyle={{ backgroundColor: '#E5E5E5', borderWidth: 0 }}
-          containerStyle={{ alignItems: 'center', borderRadius: 5, borderWidth: 1, margin: 0, marginTop: 10, padding: 0, borderColor: '#CDCDCD', borderTopColor: '#CDCDCD', borderBottomColor: '#CDCDCD' }}
+          containerStyle={styles.searchContainer}
         />
-
         <View style={styles.cardView}>
           <Image
             source={require('./assets/staticIcon.png')}
             style={styles.imageStyle}
           />
           <View style={styles.cardInerView}>
-            <Text style={styles.cardTextStyle}>Searched text</Text>
+            <Text style={styles.cardTextStyle}>{constants.searchTest.text}</Text>
             <TextInput
               style={styles.cardText}
               value={search}
@@ -55,68 +59,36 @@ export default function App() {
           </View>
         </View>
 
-      </View>
+        {/*Message Test*/}
+        <Text style={[styles.textStyle, styles.searchText]}>{constants.messageText.title}</Text>
+        <View style={styles.messageContainer}>
+          <View style={styles.messageView}>
+            <View style={styles.messageTextView}>
+              <Text style={styles.messageHeading}>{constants.messageText.heading}</Text>
+              <Text style={styles.messageText}>{constants.messageText.text}</Text>
+            </View>
+            <Image
+              source={require('./assets/message.png')}
+              style={styles.messageImageStyle}
+            />
+          </View>
+          <View style={styles.messageBtnView}>
+            <Button title="Not Now"
+              disabledStyle={styles.messageNotBtn}
+              disabledTitleStyle={styles.messageNotBtnText}
+              disabled={true}
+            />
+            <Button title="See message"
+              disabledStyle={styles.messageBtn}
+              disabledTitleStyle={styles.messageBtnText}
+              disabled={true}
+            />
+          </View>
+        </View>
 
+        
+      </ScrollView>
     </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#E5E5E5',
-  },
-  textStyle: {
-    fontSize: 16,
-    lineHeight: 22,
-    fontWeight: '600',
-    letterSpacing: 0.035,
-  },
-  buttonStyle: {
-    backgroundColor: '#FFA978',
-    borderRadius: 8,
-    marginTop: 16,
-  },
-  btnTitle: {
-    color: 'white',
-    fontSize: 18,
-    lineHeight: 25,
-    fontWeight: '600',
-    letterSpacing: 0.005
-  },
-  innerContainer: {
-    margin: 16
-  },
-  cardView: {
-    alignItems: 'center',
-    borderRadius: 8,
-    borderWidth: .5,
-    marginTop: 16,
-    padding: 10,
-    borderColor: '#CDCDCD',
-    flexDirection: 'row'
-  },
-  cardInerView: { marginLeft: 7 },
-  cardTextStyle: {
-    fontSize: 13,
-    lineHeight: 18,
-    fontWeight: '500',
-    letterSpacing: 0.025,
-    color: '#4A4A4A'
-  },
-  cardText: {
-    fontSize: 13,
-    lineHeight: 18,
-    fontWeight: '500',
-    letterSpacing: 0.025,
-    color: '#C2C2C2'
-  },
-  imageStyle: {
-    tintColor: '#C2C2C290',
-    height: 32,
-    width: 32
-  },
-  searchText: {
-    marginTop: 48
-  }
-});
