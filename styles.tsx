@@ -164,7 +164,21 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         letterSpacing: 0.025,
         margin: 16
-    }
+    },
+    calender: {
+        borderWidth: 1,
+        borderColor: '#CDCDCD',
+        backgroundColor: '#E5E5E5',
+        color: '#4A4A4A'
+    },
+    calenderBtnView: {
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    calenderBtn: {
+      width: '48%'
+    },
 });
 
 export default styles;

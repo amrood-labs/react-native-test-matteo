@@ -15,7 +15,12 @@ const constants = {
     },
     listTest: {
         titile:'List test'
-     }
+    },
+    calenderTest: {
+        title: 'Calendar test',
+        previous: 'Previous week',
+        next: 'Next week'
+    }
  }
 
  
